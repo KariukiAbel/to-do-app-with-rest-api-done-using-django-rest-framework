@@ -57,6 +57,11 @@ form_wrapper.addEventListener('submit', function(e) {
     // prevent the form from submitting on its own
     e.preventDefault()
     var url = 'http://127.0.0.1:8000/api/task-create/'
+
+    if (activeItem != null) {
+        var url = `http://127.0.0.1:8000/api/task-update/${activeItem.id}/`
+        activeItem = null
+    }
     var title = document.getElementById('title').value;
     fetch(url, {
         method: 'POST',
