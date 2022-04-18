@@ -19,11 +19,11 @@ buildList();
 function buildList() {
     var wrapper = document.getElementById('list-wrapper')
     wrapper.innerHTML = '';
-    var url = 'http://localhost:8000/api/task-list/'
+    var url = 'http://127.0.0.1:8000/api/task-list/'
     fetch(url)
         .then((resp) => resp.json())
         .then(function(data) {
-            // console.log(data);
+            console.log(data);
             var list = data;
             for (var i in list) {
                 var item = `<div id="data-row-${i}" class="task-wrapper flex-wrapper">
@@ -46,12 +46,13 @@ var form_wrapper = document.getElementById('form-wrapper')
 form_wrapper.addEventListener('submit', function(e) {
     // prevent the form from submitting on its own
     e.preventDefault()
-    var url = 'http://localhost:8000/api/task-create/'
+    var url = 'http://127.0.0.1:8000/api/task-create/'
     var title = document.getElementById('title').value;
     fetch(url, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json',
+            'X-CSRFToken': csrftoken,
         },
         body: JSON.stringify({
             'title': title
