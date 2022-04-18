@@ -38,6 +38,15 @@ function buildList() {
                     </div>
                     </div>`;
                 wrapper.innerHTML += item;
+
+            }
+            for (var i in list) {
+                var editBTN = document.getElementsByClassName('edit')[i];
+                editBTN.addEventListener('click', (function(item) {
+                    return function() {
+                        editItem(item)
+                    }
+                })(list[i]))
             }
         })
 }
@@ -59,5 +68,10 @@ form_wrapper.addEventListener('submit', function(e) {
         })
     }).then(function(response) {
         buildList()
+        document.getElementById('form').reset()
     })
 })
+
+function editItem(item) {
+    console.log('Item clicked ', item);
+}
