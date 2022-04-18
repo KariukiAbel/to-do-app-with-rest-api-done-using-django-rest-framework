@@ -14,6 +14,7 @@ function getCookie(name) {
 }
 
 var csrftoken = getCookie('csrftoken');
+var activeItem = null;
 buildList();
 
 function buildList() {
@@ -74,4 +75,6 @@ form_wrapper.addEventListener('submit', function(e) {
 
 function editItem(item) {
     console.log('Item clicked ', item);
+    activeItem = item;
+    document.getElementById('title').value = activeItem.title
 }
